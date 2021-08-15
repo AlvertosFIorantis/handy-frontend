@@ -1,0 +1,132 @@
+/*   color variables */
+/*   border radius */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Mukta, sans-serif;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: #4f546c;
+  font-size: 0.9rem;
+  background-color: #f9fbff;
+}
+
+.container {
+  width: 1200px;
+  height: 800px;
+  box-shadow: 0 5px 10px #e1e5ee;
+}
+
+/*  styling the tabulator table*/
+
+.tabulator {
+  background-color: transparent;
+  border: none;
+}
+
+#table .tabulator-row {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+/* this is the head bor */
+#table .tabulator-headers {
+  min-height: 100px;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  background-color: white;
+  font-family: "Times New Roman", serif;
+}
+
+/* this is the text in the header box */
+#table .tabulator-col-title {
+  text-align: center;
+  font-size: 25px;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+  background-color: transparent;
+}
+.tabulator .tabulator-header .tabulator-col:hover {
+  background-color: transparent;
+}
+
+.tabulator .tabulator-header {
+  box-shadow: 0 15px 15px #e1e5ee;
+  margin-bottom: 20px;
+  border: none;
+  background-color: white;
+}
+
+.tabulator .tabulator-row-even {
+  background-color: #f4f6fb;
+}
+
+.tabulator-row.tabulator-selectable:hover {
+  background-color: #2962ff;
+  color: white;
+  animation: rowSize 1s ease forwards;
+  animation-delay: 0.5s;
+  /* i have animation delay so when the user just mouse over the row but he/she doenst want to select it the hover effect doesnt take place */
+  /* border: 2px solid red; */
+}
+
+@keyframes rowSize {
+  0% {
+    height: 80px;
+  }
+  100% {
+    height: 120px;
+    font-size: 20px;
+  }
+}
+
+.tabulator .tabulator-header .tabulator-col:hover,
+.tabulator .tabulator-header .tabulator-sortable:hover {
+  background-color: transparent !important;
+}
+
+.status-insured {
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  background-color: #c8e6c9;
+  color: #388e3c;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-not-insured {
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  background-color: #ffcdd2;
+  color: #c62828;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div[title="Approved"] {
+  background-color: #c8e6c9;
+}
+
+div[title="Declined"] {
+  background-color: #ffcdd2;
+}

@@ -1,0 +1,256 @@
+:root {
+  /* --main-bg-color: #f1f1f1; */
+  --main-bg-color: white;
+  --color-title: #0e1c4e;
+
+  --font-family: "IBM Plex Sans", sans-serif;
+
+  --CompletedProgressBar: #388e3c;
+
+  /*  variables to change size of the animated bar */
+  --strokeDashoffset: 372px;
+  /* must be 472 */
+  --PercentageCompletedAnimatedBar: 0;
+  --heightWidthAnimatedBar: 150px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-bg-color);
+}
+
+/* Proggress bar */
+#progressbar {
+  background-color: red;
+  position: fixed;
+  top: 100px;
+  left: 200px;
+  /* width: 1400px; */
+  height: 700px;
+  border-radius: 50px;
+  display: none;
+}
+
+#progressbar div {
+  background-color: green;
+  /* width: 40%;  */
+  width: 20px;
+  /* height: 20px; */
+  height: 40%;
+  border-radius: 50px;
+}
+/* End of progresss bar */
+
+/* progreess circle */
+
+.container {
+  width: 1400px;
+  height: 500px;
+  display: grid;
+  position: fixed;
+  top: 100px;
+  left: 300px;
+  /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7); */
+  /* box-shadow: 0 20px 50px rgba(214, 214, 214, 0.9); */
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  overflow-y: scroll;
+  border-radius: 15px;
+}
+
+.card {
+  margin: 20px;
+  min-height: 120px;
+  /* max-height: 120px; */
+  display: flex;
+  /* justify-content: center; */
+  align-items: flex-start;
+  border-radius: 14px;
+  flex-direction: column;
+}
+
+.card-positive {
+  /* border-left: 15px solid #388e3c; */
+  border-left: 15px solid rgba(200, 230, 201, 0.8);
+  /* background-color: rgba(200, 230, 201, 0.2); */
+  /* box-shadow: 10px 10px 5px #ccc; */
+}
+
+.card-negative {
+  /* border-left: 15px solid #c62828; */
+  border-left: 15px solid rgba(255, 205, 210, 0.8);
+  /* background-color: rgba(255, 205, 210, 0.2); */
+  box-shadow: 10px 10px 5px rgb(242, 242, 242);
+}
+
+.cardCategoryHeader {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--color-title);
+  padding-left: 20px;
+  padding-top: 7px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.cardCategoryContent {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: var(--color-title);
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+/* Animated progress bar  */
+
+.progressBar_3 {
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+  grid-column: 1/ 2;
+  grid-row: 2 /-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 350px;
+  left: 80px;
+}
+
+.animatedBar {
+  /* display: inline-block; */
+  height: var(--heightWidthAnimatedBar);
+  width: var(--heightWidthAnimatedBar);
+  border-radius: 50%;
+  position: relative;
+  /* box-shadow: -3px -3px 7px #ffffffb2, 3px 3px 5px rgba(94, 104, 121, 0.945); */
+  overflow: hidden;
+}
+.animatedBar:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+  /* box-shadow: inset -3px -3px 7px #ffffffb0,
+    inset 3px 3px 5px rgba(94, 104, 121, 0.692); */
+  background-color: var(--main-bg-color);
+}
+.svgProgressBar {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: rotate(-90deg);
+  background-color: transparent;
+  background-color: rgba(198, 40, 40, 0.9);
+}
+
+.svgCircle {
+  position: absolute;
+  transform: scale(0.939);
+  transform-origin: center;
+  fill: none;
+  stroke: var(--CompletedProgressBar);
+  stroke-width: 30px;
+  stroke-dasharray: var(--strokeDashoffset);
+}
+.animatedBarSvgCircle {
+  animation: bar_1 1s ease forwards;
+}
+
+.progress__number_animated {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  line-height: 1;
+  margin-top: -1.3rem;
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--CompletedProgressBar);
+  z-index: 1;
+}
+
+@keyframes bar_1 {
+  0% {
+    stroke-dashoffset: var(--strokeDashoffset);
+  }
+  100% {
+    stroke-dashoffset: calc(
+      var(--strokeDashoffset) -
+        (var(--strokeDashoffset) * var(--PercentageCompletedAnimatedBar)) / 100
+    );
+  }
+}
+
+/* note */
+.note {
+  background-color: #fff;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.1);
+  margin: 30px 20px;
+  height: 200px;
+  width: 500px;
+  overflow-y: hidden;
+  position: fixed;
+  top: 650px;
+  left: 300px;
+}
+
+.note .tools {
+  background-color: #252e33;
+  display: flex;
+  justify-content: flex-end;
+  /* padding: 0.5rem; */
+  align-items: center;
+  height: 40px;
+}
+
+.note .tools button {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.note textarea {
+  outline: none;
+  font-family: inherit;
+  font-size: 1.2rem;
+  border: none;
+  height: 400px;
+  width: 100%;
+  padding: 20px;
+}
+
+.main {
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.question {
+  color: white;
+  margin-right: auto;
+  padding-bottom: 10px;
+}
